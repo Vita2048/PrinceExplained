@@ -1,0 +1,34 @@
+PrinceExplained — minimal GitHub Pages deployment
+================================================
+Staged: 74 files, 98.8 MB. Nothing pushed anywhere.
+
+STRUCTURE (upload this folder as the repo root)
+  index.html                        player page (served at vita2048.github.io/PrinceExplained)
+  vendor/hyperframes-player.global.js   player element, v0.8.120 (~103 KB, source-map line stripped)
+  film/index.html                   composition root, byte-identical copy (has the sword-fix: audio-23 hidden)
+  film/compositions/s01.html..s10.html  10 scene files, byte-identical copies
+  film/assets/vendor/gsap.min.js
+  film/assets/loops/                24/24 loops .mp4 (84.4 MB) — every one referenced
+  film/assets/audio/                28 files (voiceover, steel, palace, blade, land…)
+  film/assets/game/                 8 files (hint-before/after, joints, 3 palace layers, clash+theme)
+
+RUNTIME (loaded automatically, internet required)
+  Player injects https://cdn.jsdelivr.net/npm/@hyperframes/core@0.8.120/dist/hyperframe.runtime.iife.js
+
+LEFT OUT (deliberately)
+  renders/*.mp4 (127 MB output — code playback replaces it)
+  assets/game/*.mp4 (12 raw captures, build sources only)
+  22 unused assets/audio/*, 69 unused assets/game/* (screenshots, alts)
+  node_modules/, capture/, qc/, snapshots/, .hyperframes/, .thumbnails/,
+  .waveform-cache/, *.log, *.mjs scripts, *.json project files
+
+PUSH STEPS (not done)
+  1. github.com/vita2048 → New repo "PrinceExplained" (public)
+  2. copy these files in as repo root, push to main
+  3. Settings → Pages → Deploy from branch → main / (root)
+  4. ~1-2 min → https://vita2048.github.io/PrinceExplained
+
+KNOWN DIFFERENCES vs the MP4
+  Fonts (Montserrat / IBM Plex Mono) are not vendored — viewers without them
+  installed see fallback fonts. Browsers also block autoplay with sound, so the
+  page uses click-to-play via the player's controls.
